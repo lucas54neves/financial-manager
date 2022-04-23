@@ -4,36 +4,37 @@ import plotly.express as px
 import streamlit as st
 from utils.convert_numeric_month_to_string import convert_numeric_month_to_string
 from utils.return_current_month_and_year import return_current_month_and_year
+from utils.translate_words import translate_words
 
 
-def format_period(row):
-    month_as_int = int(row["Period"].split("|")[1])
-    month_as_string = convert_numeric_month_to_string(month_as_int)
-    year = row["Period"].split("|")[0]
+def format_period(row, language):
+    month_as_int = int(row["column_period"].split("|")[1])
+    month_as_string = convert_numeric_month_to_string(month_as_int, language,)
+    year = row["column_period"].split("|")[0]
 
-    row["Period"] = f"{month_as_string} {year}"
+    row["column_period"] = f"{month_as_string} {year}"
 
     return row
 
 
-def display_expense_history_report(transactions):
-    st.header("Expense history report")
+def display_expense_history_report(transactions, language):
+    st.header(translate_words("expense_history_report_title", language,))
 
     periods = [
-        "Last three months",
-        "Last six months",
-        "Last year",
+        translate_words("last_three_months", language,),
+        translate_words("last_six_months", language,),
+        translate_words("last_year", language,),
     ]
 
     periods_option = st.selectbox(
-        "Period",
+        translate_words("period_selectbox_option", language,),
         periods,
         index=0,
     )
 
     current_month, current_year = return_current_month_and_year()
 
-    if periods_option == "Last three months":
+    if periods_option == translate_words("last_three_months", language,):
         month = current_month - 3
 
         if month < 1:
@@ -41,7 +42,7 @@ def display_expense_history_report(transactions):
             year = current_year - 1
         else:
             year = current_year
-    elif periods_option == "Last six months":
+    elif periods_option == translate_words("last_six_months", language,):
         month = current_month - 6
 
         if month < 1:
@@ -61,30 +62,30 @@ def display_expense_history_report(transactions):
     after = datetime.strptime(after, "%Y-%m-%d").date()
 
     _transactions = transactions[
-        (transactions["date"] >= str(before)) & (transactions["date"] < str(after))
+        (transactions["column_date"] >= str(before)) & (transactions["column_date"] < str(after))
     ]
 
     _transactions = (
-        _transactions.groupby("period").sum()["installment_value"].reset_index()
+        _transactions.groupby("column_period").sum()["column_installment_value"].reset_index()
+    )
+
+    _transactions = _transactions.apply(
+        lambda row: format_period(row, language,),
+        axis=1,
     )
 
     _transactions.rename(
         columns={
-            "installment_value": "Total expenses",
-            "period": "Period",
+            "column_installment_value": translate_words("column_total_expenses", language,),
+            "column_period": translate_words("column_period", language,),
         },
         inplace=True,
     )
 
-    _transactions = _transactions.apply(
-        lambda row: format_period(row),
-        axis=1,
-    )
-
     fig = px.line(
         _transactions,
-        x="Period",
-        y="Total expenses",
+        x=translate_words("column_period", language,),
+        y=translate_words("column_total_expenses", language,),
     )
 
     st.plotly_chart(
