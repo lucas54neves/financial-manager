@@ -1,6 +1,6 @@
 def return_available_months_and_years(data):
     years = {}
-    dates = data["date"]
+    dates = data["column_date"]
 
     for date in dates:
         year = date.year
@@ -12,4 +12,9 @@ def return_available_months_and_years(data):
         else:
             years[year] = [month]
 
-    return years
+    return dict(
+        sorted(
+            years.items(),
+            key=lambda year: year[0],
+        )
+    )
