@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Personal data for test
+/src/data/data_personal.xlsx
