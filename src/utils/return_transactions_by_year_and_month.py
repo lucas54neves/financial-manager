@@ -9,5 +9,5 @@ def return_transactions_by_year_and_month(transactions, year, month):
     after = datetime.strptime(after, "%Y-%m-%d").date()
 
     return transactions[
-        (transactions["date"] >= str(before)) & (transactions["date"] < str(after))
+        (transactions["column_date"] >= str(before)) & (transactions["column_date"] < str(after))
     ]
