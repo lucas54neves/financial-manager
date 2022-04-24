@@ -18,17 +18,29 @@ The app has two reports, a expense history report and a expense report monthly b
 
 The expense history report displays a line graph of apend by past periods. There is the option to display spending for the last three months, the last six months and the last year (last twelve months).
 
+![Expense history report](https://github.com/lucas54neves/financial-organizer/blob/main/.github/images/expense_history_report.png)
+
 ### Expense report monthly by category
 
 The expense report monthly by category displays spend by each category in a specific month. There is the option to choose between a bar chart and a pie chart. You can choose any month from the database.
 
+![Expense history report 1](https://github.com/lucas54neves/financial-organizer/blob/main/.github/images/expense_report_monthly_by_category_1.png)
+
+![Expense history report 2](https://github.com/lucas54neves/financial-organizer/blob/main/.github/images/expense_report_monthly_by_category_2.png)
+
 The total spend for the month and the category with the highest spend are displayed below the graph.
 
+![Total spend for the month and the category with the highest spend](https://github.com/lucas54neves/financial-organizer/blob/main/.github/images/expense_report_monthly_by_category_3.png)
+
 All transactions for the month are displayed at the end.
+
+![All transactions for the month](https://github.com/lucas54neves/financial-organizer/blob/main/.github/images/expense_report_monthly_by_category_4.png)
 
 ### Language option
 
 There is an option to choose the display language. It is possible to choose between Portuguese and English.
+
+![Language option](https://github.com/lucas54neves/financial-organizer/blob/main/.github/images/languages.png)
 
 ## Development
 
