@@ -12,7 +12,7 @@ The data used for analysis was randomly generated through [this script](https://
 
 ## Features
 
-The app has two reports, a expense history report and a expense report monthly by category.
+The app has two reports, an expense history report and an expense report monthly by category.
 
 ### Expense history report
 
