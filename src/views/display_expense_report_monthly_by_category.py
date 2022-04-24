@@ -43,9 +43,10 @@ def display_expense_report_monthly_by_category(transactions, language):
             index=years.index(current_year),
         )
 
+        _months = sorted(years_and_month[years_option])
+
         _months = [
-            convert_numeric_month_to_string(month, language)
-            for month in years_and_month[years_option]
+            convert_numeric_month_to_string(month, language) for month in _months
         ]
 
         months_option = st.selectbox(

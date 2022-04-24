@@ -108,7 +108,7 @@ def generate_data(number_of_rows=50):
 
         if is_installment:
             total_installment = randint(1, 12)
-            installment_value = 400 / total_installment
+            installment_value = total_amount / total_installment
 
             for current_installment in range(1, total_installment + 1):
                 data.append(
